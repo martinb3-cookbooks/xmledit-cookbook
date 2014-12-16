@@ -1,3 +1,7 @@
+# 1.0.1
+
+- Add the ability to replace or append (action append_if_missing)
+- Attempt to strip/format whitespace better when editing
 
 # 1.0.0
 

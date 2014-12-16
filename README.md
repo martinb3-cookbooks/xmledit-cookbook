@@ -22,17 +22,21 @@ perform the expected action on the very first node found.
 |----|:-----------:|
 |replace|replaces a target node (and all children) with a new fragment|
 |append|appends a new XML fragment to a parent target node|
+|append_if_missing|if target is found, replace with fragment, otherwise append fragment|
 |remove|remove gets rid of a target node|
 
 ## Supported attributes
 
 These have no default values, and will cause a no-op if they are not specified or don't match a valid file or target.
 
-|name|required|description|
-|----|:------:|:-----------:|
-|path|true|path to the XML file to edit|
-|target|true|an xpath expression for the target node or parent of the target node (see actions above)|
-|fragment|true|a string that will be parsed into an XML fragment, for actions that add or update|
+|name|description|
+|----|:-----------:|
+|path|path to the XML file to edit|
+|target|an xpath expression for the target node (see action replace and append_if_missing above)|
+|parent|an xpath expression for the parent of the target node (see actions append and append_if_missing above)|
+|fragment|a string that will be parsed into an XML fragment, for actions that add or update|
+
+Checkout nokogiri's documentation on [XPath and search](http://www.nokogiri.org/tutorials/searching_a_xml_html_document.html) to understand the syntax behind `target` and `parent` attributes.
 
 ## Examples
 
