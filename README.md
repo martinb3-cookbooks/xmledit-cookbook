@@ -14,12 +14,14 @@ perform the expected action on the very first node found.
 
 - This cookbook attempts to sidestep resource cloning issues by forcing the resource name to be something other than a path to a file to edit. This allows you to perform multiple edits to the same file by giving the resources unique names and providing the same path attribute value.
 
+- Including an XPath expression that is a match against the node's value that you want to replace (e.g. matching against `[text=()=\'false\']` if you want to replace false with true) means that the underlying file resource will no longer be defined, vs. having a file resource that was defined but idempotently 'up to date'. Both styles are possible using this cookbook, depending on the XPath expressions you provide.
+
 ## Supported actions
 
 |name|description|
 |----|:-----------:|
-|update|replaces a target node (and all children) with a new fragment|
-|insert|appends a new XML fragment to a parent target node|
+|replace|replaces a target node (and all children) with a new fragment|
+|append|appends a new XML fragment to a parent target node|
 |remove|remove gets rid of a target node|
 
 ## Supported attributes
@@ -31,6 +33,19 @@ These have no default values, and will cause a no-op if they are not specified o
 |path|true|path to the XML file to edit|
 |target|true|an xpath expression for the target node or parent of the target node (see actions above)|
 |fragment|true|a string that will be parsed into an XML fragment, for actions that add or update|
+
+## Examples
+
+Replace `false` with `true` in a file at `/etc/application.xml` containing `<config><foo>false</foo></config>`.
+
+```
+xml_edit 'set foo to true' do
+  path '/etc/application.xml'
+  target '/config/foo[text()=\'false\']'
+  fragment '<foo>true</foo>'
+  action :replace
+end
+```
 
 ## TODO
 

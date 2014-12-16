@@ -3,10 +3,10 @@ class Chef
     include Poise
 
     # first action is the default, by convention
-    # - update replaces a target (and all children)
-    # - insert appends a child node to a target parent
+    # - replace updates a target (and all children)
+    # - append inserts a child node to a target parent
     # - remove gets rid of a target node
-    actions(:update, :insert, :remove)
+    actions(:replace, :append, :remove)
 
     # the XML file we plan to modify
     attribute(:path, kind_of: String, default: nil)
@@ -25,8 +25,8 @@ class Chef
   class Provider::XmlEdit < Provider
     include Poise
 
-    def action_update
-      converge_by("update resource #{new_resource.name}") do
+    def action_replace
+      converge_by("replace resource #{new_resource.name}") do
         # load existing file
         doc = load_xml_file(new_resource.path)
 
@@ -59,18 +59,72 @@ class Chef
       end
     end
 
-    def action_insert
-      converge_by("insert from resource #{new_resource.name}") do
+    def action_append
+      converge_by("append from resource #{new_resource.name}") do
         notifying_block do
-          pp load_xml_file(new_resource.path)
+          # load existing file
+          doc = load_xml_file(new_resource.path)
+
+          # parse given fragment
+          fragment = build_fragment(new_resource.fragment)
+
+          # find target
+          node_parent_to_append = doc.at_xpath(new_resource.target)
+          unless node_parent_to_append
+            # nil means the node wasn't found, so no-op here
+            new_resource.updated_by_last_action(false)
+            return
+          end
+
+          # replace target with new fragment
+          node_parent_to_append.add_child(fragment)
+
+          # new file contents
+          new_file_contents = doc.to_xml
+          file_to_write = new_resource.path
+          resource_name = new_resource.name
+
+          notifying_block do
+            # write new file
+            file resource_name do
+              path file_to_write
+              content new_file_contents
+            end
+          end
         end
       end
     end
 
     def action_remove
       converge_by("remove from resource #{new_resource.name}") do
+        # load existing file
+        doc = load_xml_file(new_resource.path)
+
+        # parse given fragment
+        fragment = build_fragment(new_resource.fragment)
+
+        # find target
+        node_to_remove = doc.at_xpath(new_resource.target)
+        unless node_to_remove
+          # nil means the node wasn't found, so no-op here
+          new_resource.updated_by_last_action(false)
+          return
+        end
+
+        # remove target
+        node_to_remove.remove(fragment)
+
+        # new file contents
+        new_file_contents = doc.to_xml
+        file_to_write = new_resource.path
+        resource_name = new_resource.name
+
         notifying_block do
-          pp load_xml_file(new_resource.path)
+          # write new file
+          file resource_name do
+            path file_to_write
+            content new_file_contents
+          end
         end
       end
     end
