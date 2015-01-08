@@ -5,16 +5,16 @@ if defined?(ChefSpec)
     ChefSpec::Matchers::ResourceMatcher.new(:xmledit, :replace, resource_name)
   end
 
-  def append_xmledit(resource_name)
+  def append_xml(resource_name)
     ChefSpec::Matchers::ResourceMatcher.new(:xmledit, :append, resource_name)
   end
 
 
-  def remove_xmledit(resource_name)
+  def remove_xml(resource_name)
     ChefSpec::Matchers::ResourceMatcher.new(:xmledit, :remove, resource_name)
   end
 
-  def append_if_missing_xmledit(resource_name)
+  def append_if_missing_xml(resource_name)
     ChefSpec::Matchers::ResourceMatcher.new(:xmledit, :append_if_missing, resource_name)
   end
 end
