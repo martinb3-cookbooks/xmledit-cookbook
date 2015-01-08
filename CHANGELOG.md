@@ -1,3 +1,7 @@
+# 1.0.5
+
+- Do not parse a fragment or try to pass :remove action the fragment
+
 # 1.0.1
 
 - Add the ability to replace or append (action append_if_missing)

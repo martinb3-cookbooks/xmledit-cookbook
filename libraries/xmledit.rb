@@ -135,9 +135,6 @@ class Chef
         # load existing file
         doc = load_xml_file(new_resource.path)
 
-        # parse given fragment
-        fragment = build_fragment(new_resource.fragment)
-
         # find target
         node_to_remove = doc.at_xpath(new_resource.target)
         unless node_to_remove
@@ -147,7 +144,7 @@ class Chef
         end
 
         # remove target
-        node_to_remove.remove(fragment)
+        node_to_remove.remove
 
         # new file contents
         new_file_contents = document_to_string(doc)

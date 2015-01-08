@@ -4,7 +4,9 @@ maintainer_email 'martin@mbs3.org'
 license          'apache2'
 description      'Provides a resource and provider for incremental editing of XML files'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '1.0.4'
+version          '1.0.5'
+source_url       'https://github.com/martinb3/xmledit-cookbook'
+issues_url       'https://github.com/martinb3/xmledit-cookbook/issues'
 
 depends 'poise'
 depends 'xml'
