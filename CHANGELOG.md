@@ -1,3 +1,9 @@
+# 1.0.6
+
+- Remove metadata that breaks chef 11 (source and issue url metadata, specifically)
+- Add more unit tests and integration tests
+- Update logic so that xml_edit resource truly reflects the state of the file resource being updated
+
 # 1.0.5
 
 - Do not parse a fragment or try to pass :remove action the fragment

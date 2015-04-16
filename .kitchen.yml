@@ -6,11 +6,12 @@ provisioner:
   name: chef_zero
 
 platforms:
-  - name: ubuntu-12.04
-  - name: centos-6.4
+  - name: ubuntu-14.04
+  - name: centos-6.6
 
 suites:
   - name: default
     run_list:
-      - recipe[xmledit-cookbook::default]
+      - recipe[xmledit-test::default]
+      - recipe[xmledit-test::idempotent]
     attributes:
