@@ -11,6 +11,8 @@ class Chef
     attribute(:target, kind_of: String, default: nil)
     attribute(:parent, kind_of: String, default: nil)
     attribute(:fragment, kind_of: String, default: nil)
+
+    attribute(:bind_root_namespace, kind_of: [ TrueClass, FalseClass ], default: true)
   end
 
   class Provider::XmlEdit < Provider
@@ -30,7 +32,7 @@ class Chef
         fragment = build_fragment(new_resource.fragment)
 
         # find target
-        node_to_replace = doc.at_xpath(new_resource.target)
+        node_to_replace = doc.at_xpath(new_resource.target, (new_resource.bind_root_namespace) ? doc.root.namespaces : {}) 
         unless node_to_replace
           # nil means the node wasn't found, so no-op here
           return
@@ -65,7 +67,7 @@ class Chef
       fragment = build_fragment(new_resource.fragment)
 
       # find target
-      node_parent = doc.at_xpath(new_resource.parent)
+      node_parent = doc.at_xpath(new_resource.parent, (new_resource.bind_root_namespace) ? doc.root.namespaces : {})
       unless node_parent
         # nil means the node wasn't found, so no-op here
         return
@@ -99,11 +101,13 @@ class Chef
       # parse given fragment
       fragment = build_fragment(new_resource.fragment)
 
+      namespaces_to_bind = (new_resource.bind_root_namespace) ? doc.root.namespaces : {}
+
       # find target
-      node_target = doc.at_xpath(new_resource.target)
+      node_target = doc.at_xpath(new_resource.target, namespaces_to_bind)
 
       # find parent
-      node_parent = doc.at_xpath(new_resource.parent)
+      node_parent = doc.at_xpath(new_resource.parent, namespaces_to_bind)
 
       if node_target
         # found target, so we are replacing instead of adding
@@ -138,7 +142,7 @@ class Chef
       doc = load_xml_file(new_resource.path)
 
       # find target
-      node_to_remove = doc.at_xpath(new_resource.target)
+      node_to_remove = doc.at_xpath(new_resource.target, (new_resource.bind_root_namespace) ? doc.root.namespaces : {})
       unless node_to_remove
         # nil means the node wasn't found, so no-op here
         return
