@@ -1,3 +1,7 @@
+# 1.1.0
+
+- Load namespace in Nokogiri calls (#7)
+
 # 1.0.7
 
 - Normalize the output of modified XML. Nokogiri seems to be better at parsing files into normalized XML than just writing it out, so we added a very unfortunate temporary file workaround.
