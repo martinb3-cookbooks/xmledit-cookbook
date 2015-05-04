@@ -24,6 +24,7 @@ perform the expected action on the very first node found.
 |append|appends a new XML fragment to a parent target node|
 |append_if_missing|if target is found, replace with fragment, otherwise append fragment|
 |remove|remove gets rid of a target node|
+|bulk|pass a hash of the above actions, do them all and write file out once after|
 
 ## Supported attributes
 
@@ -48,6 +49,18 @@ xml_edit 'set foo to true' do
   target '/config/foo[text()=\'false\']'
   fragment '<foo>true</foo>'
   action :replace
+end
+```
+
+```
+xml_edit '/tmp/xmledit_bulk_test.xml' do
+  edits [
+    {action: :replace, target: '/foo/bar', fragment: '<bar>xyzzy</bar>'},
+    {action: :append, parent: '/foo', target: '/foo/baz', fragment: '<baz>true</baz>'},
+    {action: :remove, target: '/foo/hideme'},
+    {action: :append_if_missing, parent: '/foo', target: '/foo/showme', fragment: '<showme/>'}
+    ]
+  action :bulk
 end
 ```
 

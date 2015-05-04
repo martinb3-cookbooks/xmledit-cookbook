@@ -1,3 +1,7 @@
+# 1.2.0
+
+- New feature: bulk action with associated `edits` attribute. Pass an array of hashes that describe each edit, using the same parameters as the other actions. See README.md for an example.
+
 # 1.1.0
 
 - Load namespace in Nokogiri calls (#7)
