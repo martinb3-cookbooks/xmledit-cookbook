@@ -14,4 +14,5 @@ suites:
     run_list:
       - recipe[xmledit-test::default]
       - recipe[xmledit-test::idempotent]
+      - recipe[xmledit-test::bulk]
     attributes:
