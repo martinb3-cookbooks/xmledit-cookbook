@@ -4,17 +4,30 @@ This cookbook allows incremental editing of XML files. You must include the
 default recipe to ensure nokogiri and its dependencies are installed using the
 upstream community xml cookbook.
 
+**Here be dragons**. This is definitely not idempotent, and is not the best way to manage a file in chef. clintoncwolfe has [described why you should not use this](https://github.com/clintoncwolfe/xml_edit#why-you-should-seriously-not-use-this). Please read his thoughts on the matter.
+
 Specifically, this library cookbooks offers a resource and provider that can be
 called by the name `xml_edit`. This resource accepts XPath expressions and will
 perform the expected action on the very first node found.
 
 ## Important notes
 
-- If no XML nodes match the XPath expression, no actions will be performed. If a file cannot be found, this provider will raise an error by virtue of `::File` raising an error.
+- If no XML nodes match the XPath expression, no actions will be performed. If a
+file cannot be found, this provider will raise an error by virtue of `::File`
+raising an error.
 
-- This cookbook attempts to sidestep resource cloning issues by forcing the resource name to be something other than a path to a file to edit. This allows you to perform multiple edits to the same file by giving the resources unique names and providing the same path attribute value.
+- This cookbook attempts to sidestep resource cloning issues by forcing the
+resource name to be something other than a path to a file to edit. This allows
+you to perform multiple edits to the same file by giving the resources unique
+names and providing the same path attribute value. You may also do a bulk edit,
+if you know in advance all the edits that should be happening to a file.
 
-- Including an XPath expression that is a match against the node's value that you want to replace (e.g. matching against `[text=()=\'false\']` if you want to replace false with true) means that the underlying file resource will no longer be defined, vs. having a file resource that was defined but idempotently 'up to date'. Both styles are possible using this cookbook, depending on the XPath expressions you provide.
+- Including an XPath expression that is a match against the node's value that
+you want to replace (e.g. matching against `[text=()=\'false\']` if you want to
+replace false with true) means that the underlying file resource will no longer
+be defined, vs. having a file resource that was defined but idempotently 'up to
+date'. Both styles are possible using this cookbook, depending on the XPath
+expressions you provide.
 
 ## Supported actions
 
