@@ -1,3 +1,7 @@
+# 1.2.1
+
+- Remove comment that was preventing updates ot the file, fixes #9.
+
 # 1.2.0
 
 - New feature: bulk action with associated `edits` attribute. Pass an array of hashes that describe each edit, using the same parameters as the other actions. See README.md for an example.

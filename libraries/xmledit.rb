@@ -59,7 +59,7 @@ class Chef
       end
 
       edits.each do |edit|
-        #make_edit(edit[:action], edit[:path], edit[:target], edit[:parent], edit[:fragment])
+        make_edit(edit[:action], edit[:path], edit[:target], edit[:parent], edit[:fragment])
       end
     end
 
@@ -180,7 +180,7 @@ class Chef
 
       resource.run_action(:create)
       new_resource.updated_by_last_action(true) if resource.updated_by_last_action?
-      
+
       warn_if_resource_update_looks_wrong(new_resource.name, old_file_contents, new_file_contents, resource.updated_by_last_action?)
     end
 
