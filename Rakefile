@@ -12,7 +12,7 @@ namespace :style do
   desc 'Run Chef style checks'
   FoodCritic::Rake::LintTask.new(:chef) do |t|
     t.options = { search_gems: true,
-                  fail_tags: ['correctness','rackspace'],
+                  fail_tags: ['correctness'],
                   chef_version: '11.6.0'
                 }
   end

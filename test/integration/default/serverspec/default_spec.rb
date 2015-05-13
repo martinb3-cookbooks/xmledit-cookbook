@@ -13,7 +13,7 @@ describe file('/tmp/xmledit_edit_test.xml') do
     its(:content) { should match(r) }
   end
 
-  its(:content) { should_not match(/hideme/)}
+  its(:content) { should_not match(/hideme/) }
 end
 
 describe file('/tmp/xmledit_bulk_test.xml') do
@@ -27,5 +27,5 @@ describe file('/tmp/xmledit_bulk_test.xml') do
     its(:content) { should match(r) }
   end
 
-  its(:content) { should_not match(/hideme/)}
+  its(:content) { should_not match(/hideme/) }
 end

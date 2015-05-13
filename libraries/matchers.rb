@@ -9,7 +9,6 @@ if defined?(ChefSpec)
     ChefSpec::Matchers::ResourceMatcher.new(:xml_edit, :append, resource_name)
   end
 
-
   def remove_xml(resource_name)
     ChefSpec::Matchers::ResourceMatcher.new(:xml_edit, :remove, resource_name)
   end

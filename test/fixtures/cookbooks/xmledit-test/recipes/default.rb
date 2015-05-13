@@ -1,7 +1,7 @@
 include_recipe 'xmledit::default'
 
 File.open('/tmp/xmledit_edit_test.xml', 'w') do |file|
-  file.write("<foo><bar>true</bar><hideme/></foo>")
+  file.write('<foo><bar>true</bar><hideme/></foo>')
 end
 
 xml_edit 'bar should be xyzzy' do

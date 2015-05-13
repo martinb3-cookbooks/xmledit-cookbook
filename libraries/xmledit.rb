@@ -7,7 +7,7 @@ class Chef
     actions(:replace, :append, :remove, :append_if_missing, :bulk)
 
     # see README.md for documentation on these attributes
-    attribute(:path, kind_of: String, :name_attribute => true)
+    attribute(:path, kind_of: String, name_attribute: true)
     attribute(:target, kind_of: String, default: nil)
     attribute(:parent, kind_of: String, default: nil)
     attribute(:fragment, kind_of: String, default: nil)
@@ -16,8 +16,7 @@ class Chef
     attribute(:edits, kind_of: Array, default: [])
 
     # for nokogiri's happiness
-    attribute(:bind_root_namespace, kind_of: [ TrueClass, FalseClass ], default: true)
-
+    attribute(:bind_root_namespace, kind_of: [TrueClass, FalseClass], default: true)
   end
 
   class Provider::XmlEdit < Provider
@@ -53,7 +52,7 @@ class Chef
     end
 
     def _action_bulk(edits)
-      unless (edits || edits.empty?)
+      unless edits || edits.empty?
         Chef::Log.warn("#{new_resource.name} was given no edits for :bulk action")
         return
       end
@@ -69,18 +68,18 @@ class Chef
     end
 
     def _action_replace(target, fragment)
-        # parse given fragment
-        fragment_xml = build_fragment(fragment)
+      # parse given fragment
+      fragment_xml = build_fragment(fragment)
 
-        # find target
-        node_to_replace = document.at_xpath(target, namespace)
-        unless node_to_replace
-          # nil means the node wasn't found, so no-op here
-          return
-        end
+      # find target
+      node_to_replace = document.at_xpath(target, namespace)
+      unless node_to_replace
+        # nil means the node wasn't found, so no-op here
+        return
+      end
 
-        # replace target with new fragment
-        node_to_replace.replace(fragment_xml)
+      # replace target with new fragment
+      node_to_replace.replace(fragment_xml)
     end
 
     def action_append
@@ -108,7 +107,7 @@ class Chef
       write_document
     end
 
-    def _action_append_if_missing(path, target, parent, fragment)
+    def _action_append_if_missing(_path, target, parent, fragment)
       # parse given fragment
       fragment_xml = build_fragment(fragment)
 
@@ -160,7 +159,7 @@ class Chef
       when :bulk
         _action_bulk(new_resource.edits)
       else
-        raise "#{action} was not a valid action for #{new_resource.name}"
+        fail "#{action} was not a valid action for #{new_resource.name}"
       end
     end
 
@@ -183,6 +182,5 @@ class Chef
 
       warn_if_resource_update_looks_wrong(new_resource.name, old_file_contents, new_file_contents, resource.updated_by_last_action?)
     end
-
   end
 end

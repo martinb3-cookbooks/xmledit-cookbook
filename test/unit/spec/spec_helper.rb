@@ -3,8 +3,7 @@ require 'rspec/expectations'
 require 'chefspec'
 require 'chefspec/berkshelf'
 
-
-def node_resources(node)
+def node_resources(_node)
 end
 
 def stub_resources
