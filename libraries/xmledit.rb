@@ -1,3 +1,5 @@
+require 'poise'
+
 class Chef
   class Resource::XmlEdit < Resource
     include Poise
