@@ -1,3 +1,7 @@
+# 1.2.2
+
+- Make compatible with poise 2.0 by adding `require 'poise'` to each resource and provider class.
+
 # 1.2.1
 
 - Remove comment that was preventing updates ot the file, fixes #9.
