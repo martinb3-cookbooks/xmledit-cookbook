@@ -1,3 +1,7 @@
+# 1.2.3
+
+- Ensure we pin to latest poise, so Berkshelf does not use xmledit with older poise
+
 # 1.2.2
 
 - Make compatible with poise 2.0 by adding `require 'poise'` to each resource and provider class.
