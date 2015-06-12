@@ -166,7 +166,7 @@ class Chef
     end
 
     def write_document
-      old_file_contents = ::File.open(new_resource.path).read
+      old_file_contents = ::File.open(new_resource.path) { |f| f.read }
       new_file_contents = document_to_string(document)
 
       file_to_write = new_resource.path

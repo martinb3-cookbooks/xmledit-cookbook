@@ -9,9 +9,9 @@ module XmleditCookbook
       begin
         ::File.write(file, document.to_xml)
         load_xml_file(file).to_xml
-     ensure
-       file.close
-       file.unlink   # deletes the temp file
+      ensure
+        file.close
+        file.unlink   # deletes the temp file
       end
     end
 
