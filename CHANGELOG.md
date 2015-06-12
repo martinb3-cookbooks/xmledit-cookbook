@@ -1,3 +1,7 @@
+# 1.2.4
+
+- Close all file handles (#11)
+
 # 1.2.3
 
 - Ensure we pin to latest poise, so Berkshelf does not use xmledit with older poise
