@@ -1,7 +1,7 @@
 class Chef
   class Resource
     class XmlEdit < Chef::Resource::LWRPBase
-      self.resource_name = :xml_edit
+      provides :xml_edit
 
       # see README.md for documentation on these actions
       # first action is the default, by convention

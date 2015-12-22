@@ -11,7 +11,7 @@ module XmleditCookbook
         load_xml_file(file).to_xml
       ensure
         file.close
-        file.unlink   # deletes the temp file
+        file.unlink # deletes the temp file
       end
     end
 

@@ -12,6 +12,9 @@ perform the expected action on the very first node found.
 
 ## Important notes
 
+- This cookbook supports chef 12.x and greater. For working Chef 11.x support,
+pin back to xmledit < 3.0.0.
+
 - If no XML nodes match the XPath expression, no actions will be performed. If a
 file cannot be found, this provider will raise an error by virtue of `::File`
 raising an error.

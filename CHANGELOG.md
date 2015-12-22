@@ -1,3 +1,14 @@
+# 3.0.0
+
+- Start using `provides`, breaks Chef 11 compat (#11)
+- Update CentOS testing from 6.6 to 6.7
+- Update Berkshelf pin to ~> 4
+- New rubocop complaints addressed
+
+# 2.0.0
+
+- Remove poise dependency, bump to v2.0.0 (#10)
+
 # 1.2.4
 
 - Close all file handles (#11)
