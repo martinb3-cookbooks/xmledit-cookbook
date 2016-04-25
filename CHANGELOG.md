@@ -1,3 +1,7 @@
+# 3.0.1
+
+- Add a bulk edit matcher
+
 # 3.0.0
 
 - Start using `provides`, breaks Chef 11 compat (#11)
