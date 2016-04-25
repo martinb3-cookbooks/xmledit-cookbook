@@ -1,3 +1,7 @@
+# 3.0.2
+
+- Tweak name of matcher
+
 # 3.0.1
 
 - Add a bulk edit matcher

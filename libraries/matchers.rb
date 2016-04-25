@@ -17,7 +17,7 @@ if defined?(ChefSpec)
     ChefSpec::Matchers::ResourceMatcher.new(:xml_edit, :append_if_missing, resource_name)
   end
 
-  def bulk_xml(resource_name)
-    ChefSpec::Matchers::ResourceMatcher.new(:xml_edit, :replace, resource_name)
+  def bulk_edit_xml(resource_name)
+    ChefSpec::Matchers::ResourceMatcher.new(:xml_edit, :bulk, resource_name)
   end
 end
