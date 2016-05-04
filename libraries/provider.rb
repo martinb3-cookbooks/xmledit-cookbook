@@ -79,7 +79,11 @@ class Chef
         end
 
         # add fragment to parent
-        node_parent.add_child(fragment_xml)
+        if new_resource.prepend
+          node_parent.prepend_child(fragment_xml)
+        else
+          node_parent.add_child(fragment_xml)
+        end
       end
 
       def action_append_if_missing
@@ -102,7 +106,11 @@ class Chef
           node_target.replace(fragment_xml)
         elsif node_parent
           # found parent but not target, so we are going to add
-          node_parent.add_child(fragment_xml)
+          if new_resource.prepend
+            node_parent.prepend_child(fragment_xml)
+          else
+            node_parent.add_child(fragment_xml)
+          end
         else
           # could not find target or parent
           return

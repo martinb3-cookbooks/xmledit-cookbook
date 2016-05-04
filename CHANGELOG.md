@@ -1,3 +1,7 @@
+# 3.0.3
+
+- Add ability to prepend when doing an append, vs. adding at the end
+
 # 3.0.2
 
 - Tweak name of matcher

@@ -13,6 +13,7 @@ class Chef
       attribute :target, kind_of: String, default: nil
       attribute :parent, kind_of: String, default: nil
       attribute :fragment, kind_of: String, default: nil
+      attribute :prepend, kind_of: [TrueClass, FalseClass], default: false
 
       # for bulk edits, pass an array of hashes of the above items
       attribute :edits, kind_of: Array, default: []

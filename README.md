@@ -53,6 +53,7 @@ These have no default values, and will cause a no-op if they are not specified o
 |parent|an xpath expression for the parent of the target node (see actions append and append_if_missing above)|
 |fragment|a string that will be parsed into an XML fragment, for actions that add or update|
 |edits|an array of hashes, with each hash containing one or zero keys of: `:action`, `:path`, `:targent`, `:parent`, or `:fragment`|
+|prepend|`true` or `false`; If the action is appending, prepend to the front (parent.prepend_chidl) vs. the end (parent.add_child)|
 
 Checkout nokogiri's documentation on [XPath and search](http://www.nokogiri.org/tutorials/searching_a_xml_html_document.html) to understand the syntax behind `target` and `parent` attributes.
 
