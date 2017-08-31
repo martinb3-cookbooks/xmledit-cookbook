@@ -5,4 +5,4 @@ license          'apache2'
 description      'Provides a resource and provider for incremental editing of XML files'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 chef_version     '>= 12.12'
-version          '3.1.0'
+version          '4.0.0'

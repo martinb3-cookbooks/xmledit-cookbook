@@ -1,3 +1,7 @@
+# 4.0.0
+
+- Drop dependency on nokogiri (#21)
+
 # 3.0.3
 
 - Add ability to prepend when doing an append, vs. adding at the end
