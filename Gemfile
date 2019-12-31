@@ -1,9 +1,8 @@
 source 'https://rubygems.org'
 
 group :lint do
-  gem 'foodcritic', '~> 3.0'
-  gem 'foodcritic-rackspace-rules'
-  gem 'rubocop', '~> 0.24'
+  gem 'foodcritic'
+  gem 'rubocop', '~> 0.49'
   gem 'rspec'
 end
 
@@ -15,7 +14,6 @@ end
 
 group :kitchen_common do
   gem 'test-kitchen'
-  gem 'kitchen-rackspace'
   gem 'kitchen-docker'
 end
 
